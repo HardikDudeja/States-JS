@@ -5,13 +5,22 @@ interface Game {
     moves: string[];
 }
 class GameManager {
+    private static instance: GameManager
     private games: Game[];
     
-    constructor() {
+    private constructor() {
         this.games = [];
     }
 
-    public addGame(id: string) {
+    static getInstance() {
+        if(this.instance) {
+            return this.instance;
+        }
+        this.instance = new GameManager();
+        return this.instance;
+    }
+
+    addGame(id: string) {
         this.games.push({
             id,
             whitePlayerName: "Alice",
@@ -25,10 +34,9 @@ class GameManager {
         const game = this.games.find(g => g.id === gameId);
         game?.moves.push(move);
     }
-
-    public getGames() {
+    getGames() {
         return this.games;
     }
 }
 
-export const gameManager: GameManager = new GameManager();
+export const gameManager: GameManager = GameManager.getInstance();
