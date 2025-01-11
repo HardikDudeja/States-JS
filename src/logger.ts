@@ -1,10 +1,9 @@
-// Just log the state on the server 
+// Just log the state on the server every 5 seconds
 
-import { games } from "./store";
-
+import { gameManager } from "./store";
 
 export function startLogger() {
     setInterval(() => {
-        console.log(games);
+        console.log(gameManager.getGames());
     }, 5000);
 }

@@ -1,13 +1,9 @@
 import { startLogger } from "./logger";
-import { games } from "./store";
+import { gameManager } from "./store";
 
+// export const gameManager: GameManager = new GameManager()
 startLogger();
 
 setInterval(() => {
-    games.push({
-        id: Math.random().toString(),
-        whitePlayerName: "Alice",
-        blackPlayerName: "Bob",
-        moves: []
-    })
+    gameManager.addGame(Math.random().toString());
 }, 5000);
